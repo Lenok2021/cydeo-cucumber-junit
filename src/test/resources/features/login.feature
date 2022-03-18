@@ -8,26 +8,30 @@ Feature: Library app login feature
  # you can put tags as much as your want// that depends on scenario
  # if  I put librarian, only one scenario will be executed
 
-  @librarian @employee
-  Scenario:  Login as Librarian
-    When user enters librarian name
+
+
+  Background: For the scenarios in the feature file, user is expected to be on login page
+    Given user is on the library login page
+
+  @librarian @employee @wip
+  Scenario: Login as librarian
+    When user enters librarian username
     And user enters librarian password
     Then user should see the dashboard
 
   @student
   Scenario: Login as student
-    When user enters student name
+    When user enters student username
     And user enters student password
     Then user should see the dashboard
 
-    @admin @employee
+  @admin @employee
   Scenario: Login as admin
-    When user enters admin name
+    When user enters admin username
     And user enters admin password
     Then user should see the dashboard
 
-#this how to add comments in feature file
-
+#this is how we add comments in feature file
 
 
 
