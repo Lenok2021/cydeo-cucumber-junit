@@ -52,6 +52,8 @@ public class WikiStepDefinitions {
     @Then("User sees {string} is in the image header")
     public void user_Sees_Is_In_The_Image_Header(String string) {
 
+        Assert.assertTrue(wikiSearchPage.picture.isDisplayed());
+        Assert.assertTrue(wikiSearchPage.picture.getText().contains(string));
 
 
     }
