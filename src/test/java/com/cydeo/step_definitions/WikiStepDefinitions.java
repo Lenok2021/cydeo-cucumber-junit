@@ -41,7 +41,7 @@ public class WikiStepDefinitions {
     @Then("User sees {string} is in the main header")
     public void userSeesIsInTheMainHeader(String string) {
 
-            // verify  the  header is displayes
+            // verify  the  header is displays
             // the text  = Steve Jobs
             Assert.assertTrue(wikiSearchPage.mainHeader.isDisplayed());
             Assert.assertTrue(wikiSearchPage.mainHeader.getText().contains(string));
