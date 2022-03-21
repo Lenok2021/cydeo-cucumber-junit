@@ -35,11 +35,16 @@ public class Web_Table {
         webLoginPage.loginButton.click();
     }
 
-    @Then("user should see url contains orders")
-    public void user_should_see_url_contains_orders() {
-        BrowserUtils.sleepMethod(3);
-        BrowserUtils.verifyURLcontains("orders");
+    @When("user enters username {string} enters password {string}")
+    public void user_enters_username_enters_password(String string, String string2) {
+
+        webLoginPage.loginButton.sendKeys(string);
+        webLoginPage.userPassword.sendKeys(string2);
+        webLoginPage.loginButton.click();
+
     }
+
+
 
 
 }
