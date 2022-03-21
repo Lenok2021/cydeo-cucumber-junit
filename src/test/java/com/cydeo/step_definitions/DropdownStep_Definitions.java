@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DropdownStep_Definitions {
@@ -22,8 +23,27 @@ public class DropdownStep_Definitions {
     @Then("User should see below info in month dropdown")
     public void user_should_see_below_info_in_month_dropdown(List<String> expectedMonth) {
 
+
         Select dropdown = new Select(dropDownsPage.dropdown) ;
+
+        /**
+         * we have a conflict here because we have
+         * a List<WebElement> and List<String> expectedMonth
+         *   we need  to create an empty List<String>
+         *     get text from WebElements and assign it back
+         *     empty List<String>
+         *
+         */
         List<WebElement> list = dropdown.getOptions();
+
+        List<String> listNew = new ArrayList<>();
+
+        for (WebElement each : list) {
+
+            String text = each.getText();
+            listNew.add(text);
+
+        }
 
 
 
