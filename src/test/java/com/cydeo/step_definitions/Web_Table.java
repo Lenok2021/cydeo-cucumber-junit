@@ -45,17 +45,12 @@ public class Web_Table {
 
     @When("user enters below credentials")
     public void user_enters_below_credentials(Map<String, String> credentials) {
-
-//        webTableLoginPage.inputUsername.sendKeys(credentials.get("username"));
-//        webTableLoginPage.inputPassword.sendKeys(credentials.get("password"));
-//        webTableLoginPage.loginButton.click();
-
         //we can call our login utility method and pass values from map
         webTableLoginPage.login(credentials.get("username"), credentials.get("password"));
 
     }
 
-    //Break until 3.10pm cst
+
 
 
 
