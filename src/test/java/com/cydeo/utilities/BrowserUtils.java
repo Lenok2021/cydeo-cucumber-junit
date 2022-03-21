@@ -53,14 +53,12 @@ for given duration
 
 
     /**
-     * This  method will accept the String as argument and
-     * verify  is current URL contains given url
-      * @param expectedTitle
+     * This method will accept a String as expected value and verify actual URL CONTAINS the value.
+     * @param expectedInURL
      */
-    public static void verifyURLcontains( String expectedTitle){
-
-        Assert.assertTrue(Driver.getDriver().getTitle().contains(expectedTitle));
-
+    public static void verifyURLContains(String expectedInURL){
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
     }
+
 
 }
