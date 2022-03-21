@@ -2,6 +2,7 @@ package com.cydeo.pages;
 
 import com.cydeo.utilities.Driver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -33,4 +34,25 @@ public class OrderPage {
 
     @FindBy(name = "zip")
     public WebElement inputZip ;
+
+    @FindBy(xpath = "//button[. = 'Calculate']")
+    public WebElement calculateButton;
+
+    @FindBy(xpath = "//input[@value = 'MasterCard']")
+    public WebElement masterCard ;
+
+    @FindBy(name = "cardNo")
+    public WebElement cardNumber ;
+
+    @FindBy(name = "cardExp")
+    public WebElement expirationCard ;
+
+    @FindBy(xpath = "//button[. = 'Process Order']")
+    public WebElement processButton ;
+
+    @FindBy(xpath = "//tbody/tr[1]/td[. = 'Sherlock Holmes']")
+    public WebElement confirmationOrderName;
+
+
+
 }
