@@ -1,0 +1,29 @@
+package com.cydeo.step_definitions;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class Web_Table {
+
+    @Given("user is on the login page of web table app")
+    public void user_is_on_the_login_page_of_web_table_app() {
+
+    }
+    @When("user enters {string}")
+    public void user_enters(String string) {
+
+    }
+    @When("user clicks to login button")
+    public void user_clicks_to_login_button() {
+
+    }
+    @Then("user should see url contains orders")
+    public void user_should_see_url_contains_orders() {
+
+    }
+
+
+
+
+}
