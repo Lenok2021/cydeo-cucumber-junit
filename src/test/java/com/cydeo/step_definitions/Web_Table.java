@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Web_Table {
-
     WebTableLoginPage webTableLoginPage = new WebTableLoginPage();
 
     @Given("user is on the login page of web table app")
@@ -20,22 +19,18 @@ public class Web_Table {
         String url = ConfigurationReader.getProperty("web.table.url");
         Driver.getDriver().get(url);
     }
-
     @When("user enters username {string}")
     public void user_enters_username(String string) {
         webTableLoginPage.inputUsername.sendKeys(string);
     }
-
     @When("user enters password {string}")
     public void user_enters_password(String string) {
         webTableLoginPage.inputPassword.sendKeys(string);
     }
-
     @When("user clicks to login button")
     public void user_clicks_to_login_button() {
         webTableLoginPage.loginButton.click();
     }
-
     @Then("user should see url contains orders")
     public void user_should_see_url_contains_orders() {
         BrowserUtils.verifyURLContains("orders");
@@ -48,26 +43,20 @@ public class Web_Table {
 
     }
 
-    @When("User enters below credentials")
+    @When("user enters below credentials")
     public void user_enters_below_credentials(Map<String, String> credentials) {
-     /*
-     | username | Test   |
-      | password | Tester |
-     since we have in this format  we used Map
-           */
 
-      //  System.out.println("credentials.get(\"username\") = " + credentials.get("username"));
-      //  System.out.println("credentials.get(\"password\") = " + credentials.get("password"));
+//        webTableLoginPage.inputUsername.sendKeys(credentials.get("username"));
+//        webTableLoginPage.inputPassword.sendKeys(credentials.get("password"));
+//        webTableLoginPage.loginButton.click();
 
-        /**
-         * we  used  method  get  from Map
-         * get  method accepts key (username, password) and return the value(credentials)
-         */
-        webTableLoginPage.inputUsername.sendKeys(credentials.get("username"));
-        webTableLoginPage.inputPassword.sendKeys(credentials.get("password"));
-        webTableLoginPage.loginButton.click();
+        //we can call our login utility method and pass values from map
+        webTableLoginPage.login(credentials.get("username"), credentials.get("password"));
 
     }
+
+    //Break until 3.10pm cst
+
 
 
 }
