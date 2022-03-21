@@ -51,4 +51,10 @@ for given duration
 
     }
 
+    public static void verifyTitleContains( String expectedTitle){
+
+        Assert.assertTrue(Driver.getDriver().getTitle().contains(expectedTitle));
+
+    }
+
 }
