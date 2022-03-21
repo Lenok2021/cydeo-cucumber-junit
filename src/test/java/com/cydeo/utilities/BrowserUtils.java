@@ -51,6 +51,12 @@ for given duration
 
     }
 
+
+    /**
+     * This  method will accept the String as argument and
+     * verify  is current URL contains given url
+      * @param expectedTitle
+     */
     public static void verifyTitleContains( String expectedTitle){
 
         Assert.assertTrue(Driver.getDriver().getTitle().contains(expectedTitle));
