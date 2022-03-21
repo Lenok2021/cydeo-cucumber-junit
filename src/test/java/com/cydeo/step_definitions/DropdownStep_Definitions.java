@@ -4,6 +4,7 @@ import com.cydeo.pages.DropDownsPage;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -24,7 +25,7 @@ public class DropdownStep_Definitions {
     public void user_should_see_below_info_in_month_dropdown(List<String> expectedMonth) {
 
 
-        Select dropdown = new Select(dropDownsPage.dropdown) ;
+        Select dropdown = new Select(dropDownsPage.dropdown);
 
         /**
          * we have a conflict here because we have
@@ -34,18 +35,20 @@ public class DropdownStep_Definitions {
          *     empty List<String>
          *
          */
-        List<WebElement> list = dropdown.getOptions();
+        List<WebElement> listActualMonth = dropdown.getOptions();
 
+        // we created an empty List<String>
+        //in order to store text from options
         List<String> listNew = new ArrayList<>();
 
-        for (WebElement each : list) {
+        for (WebElement each : listActualMonth) {
 
-            String text = each.getText();
+            String text = each.getText(); // get  text  of each option
             listNew.add(text);
-
         }
-
-
+        Assert.assertEquals(expectedMonth, listNew);
+        // Assert, will  check the size first
+        // If it is matching it will check content 1 by 1
 
     }
 
