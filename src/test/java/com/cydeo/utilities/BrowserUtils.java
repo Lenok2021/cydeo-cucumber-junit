@@ -47,7 +47,7 @@ for given duration
      */
     public static void verifyTitle( String expectedTitle){
 
-        Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
+        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), expectedTitle);
 
     }
 
@@ -57,7 +57,7 @@ for given duration
      * verify  is current URL contains given url
       * @param expectedTitle
      */
-    public static void verifyTitleContains( String expectedTitle){
+    public static void verifyURLcontains( String expectedTitle){
 
         Assert.assertTrue(Driver.getDriver().getTitle().contains(expectedTitle));
 
