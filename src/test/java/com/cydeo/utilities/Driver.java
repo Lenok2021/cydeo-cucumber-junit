@@ -18,7 +18,8 @@ public class Driver {
     /*2. we make Webdriver private, because we want to close access outside the class.
     we make it static because we will use it in a static method.
      */
-    private static WebDriver driver;
+    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+
 
     /*
     create a reusable utility  method which will
@@ -28,7 +29,7 @@ public class Driver {
    */
     public static WebDriver getDriver() {
 
-        if (driver == null) {  // if driver ==  null go here and create a new WebDriver instance
+        if (driverPool.get() == null) {  // if driver ==  null go here and create a new WebDriver instance
                           /*
              we get browser type from configuration property file
              we can control which browser is opened from outside of code,
@@ -47,31 +48,31 @@ public class Driver {
             switch (browserType) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "firefox":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new FirefoxDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    WebDriverManager.firefoxdriver().setup();
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "opera":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new OperaDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    WebDriverManager.operadriver().setup();
+                    driverPool.set(new OperaDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "safari":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new SafariDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    WebDriverManager.safaridriver().setup();
+                    driverPool.set(new SafariDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
             }
         }
-        return driver;  //  if the Driver is not null ==> return me the existing one
+        return driverPool.get();  //  if the Driver is not null ==> return me the existing one
         // if  driver already exist return me existing driver.
     }
 
@@ -83,9 +84,9 @@ public class Driver {
     after quite method
      */
     public static void closeDriver(){
-        if(driver != null){
-            driver.quit(); // this lines will terminate the exiting session.value will not even be null
-            driver = null;
+        if(driverPool.get() != null){
+            driverPool.get().quit(); // this lines will terminate the exiting session.value will not even be null
+            driverPool.remove();
         }
 
 
