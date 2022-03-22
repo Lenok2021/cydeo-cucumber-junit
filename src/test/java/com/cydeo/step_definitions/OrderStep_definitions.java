@@ -3,6 +3,7 @@ package com.cydeo.step_definitions;
 import com.cydeo.pages.BasePage;
 import com.cydeo.pages.OrderPage;
 import com.cydeo.pages.webPageTask.WebTableLoginPage;
+import com.cydeo.utilities.BrowserUtils;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -109,14 +110,19 @@ public class OrderStep_definitions {
         orderPage.masterCard.click();
         Assert.assertTrue(orderPage.masterCard.isSelected());
 */
-
+/*
         List<WebElement> cardType = orderPage.cardTypes ;
         for (WebElement each: cardType) {
             if(each.getAttribute("value").equals(expectedCardType)){
                 each.click();
             }
         }
+*/
+        /**
+         * we implemented method from BrowserUtils
+         */
 
+        BrowserUtils.clickRadioButton(orderPage.cardTypes, expectedCardType);
 
     }
 
