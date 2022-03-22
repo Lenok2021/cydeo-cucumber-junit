@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class OrderPage {
 
     public OrderPage() {
@@ -53,6 +55,8 @@ public class OrderPage {
     @FindBy(xpath = "//tbody/tr[1]/td[. = 'Sherlock Holmes']")
     public WebElement confirmationOrderName;
 
+    @FindBy(name = "card")
+    public List< WebElement> cardTypes;
 
 
 }

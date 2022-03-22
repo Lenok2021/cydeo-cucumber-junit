@@ -90,4 +90,16 @@ for given duration
         return actualOptionsAsString;
     }
 
+
+    public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue) {
+
+        for (WebElement each : radioButtons) {
+            if (each.getAttribute("value").equals(attributeValue)) {
+                each.click();
+            }
+        }
+
+
+    }
+
 }

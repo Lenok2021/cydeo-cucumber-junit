@@ -5,15 +5,18 @@ import com.cydeo.pages.OrderPage;
 import com.cydeo.pages.webPageTask.WebTableLoginPage;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.security.Key;
+import java.util.List;
 
 public class OrderStep_definitions {
 
@@ -43,12 +46,32 @@ public class OrderStep_definitions {
 
     }
 
+    /*
     @When("user enters quantity {string}")
     public void user_enters_quantity(String quantity) {
         actions.moveToElement(orderPage.inpoutQuantity).click()
                 .pause(2).sendKeys(Keys.BACK_SPACE)
                 .sendKeys(quantity).perform();
         actions.moveToElement(orderPage.calculateButton).click().perform();
+
+    }
+*/
+
+    /**
+     * If we out integer  instead String as a parameter in feature file
+     * we  will  have compile error when we put sendKeys()
+     * BC  sendkey method accept String as an argument
+     * 1) we can use integer  and just concatenate it to the String
+     * 2) we can convert integer to String by using String.valueOf() method
+     *
+     */
+    @And("user enters quantity {int}")
+    public void userEntersQuantity(int arg0) {
+
+        orderPage.inpoutQuantity.sendKeys(Keys.BACK_SPACE);
+       // orderPage.inpoutQuantity.sendKeys(arg0+"");
+        orderPage.inpoutQuantity.sendKeys(String.valueOf(arg0));
+
 
     }
 
@@ -78,13 +101,22 @@ public class OrderStep_definitions {
     }
 
     @When("user selects credit card type {string}")
-    public void user_selects_credit_card_type(String string) {
-
+    public void user_selects_credit_card_type(String expectedCardType) {
+/*
         String actualNameOfCard = orderPage.masterCard.getAttribute("value");
         Assert.assertTrue(orderPage.masterCard.isDisplayed());
         Assert.assertTrue(actualNameOfCard.equals(string));
         orderPage.masterCard.click();
         Assert.assertTrue(orderPage.masterCard.isSelected());
+*/
+
+        List<WebElement> cardType = orderPage.cardTypes ;
+        for (WebElement each: cardType) {
+            if(each.getAttribute("value").equals(expectedCardType)){
+                each.click();
+            }
+        }
+
 
     }
 
@@ -111,6 +143,7 @@ public class OrderStep_definitions {
 
 
     }
+
 
 
 }
