@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class OrderPage {
+public class OrderPage  extends BasePage{
 
     public OrderPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -52,7 +52,7 @@ public class OrderPage {
     @FindBy(xpath = "//button[. = 'Process Order']")
     public WebElement processButton ;
 
-    @FindBy(xpath = "//tbody/tr[1]/td[. = 'Sherlock Holmes']")
+    @FindBy(xpath = "//tbody/tr[1]/td[1]")
     public WebElement confirmationOrderName;
 
     @FindBy(name = "card")
